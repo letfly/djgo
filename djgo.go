@@ -5,28 +5,24 @@ import (
 	"net/http"
 )
 
+// Declare variables
 var (
-	DjApp    *App
 	HttpAddr string
 	HttpPort int
 )
 
 func init() {
-	DjApp = NewApp()
-
 	HttpAddr = ""
 	HttpPort = 8000
 }
 
-type App struct {
+func NewApp(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello") // the w is written to the output to the client
 }
 
-func NewApp() *App {
-	app := &App{}
-	return app
-}
-
-func (app *App) Run() {
+// Run interface
+func Run() {
+	http.HandleFunc("/", NewApp)
 	addr := fmt.Sprintf("%s:%d", HttpAddr, HttpPort)
 	err := http.ListenAndServe(addr, nil)
 	if err != nil {
