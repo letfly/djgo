@@ -7,6 +7,6 @@ type HomeController struct {
 }
 
 func main() {
-	djgo.Router("/", &HomeController{})
+	djgo.Router("/admin", &HomeController{})
 	djgo.Run()
 }
